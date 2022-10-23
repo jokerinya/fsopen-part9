@@ -1,12 +1,36 @@
+// 3rd party
 import express from 'express';
 const app = express();
+// locale
+import { calculateBmiCmKg } from './bmiCalculator';
 
 // unused vars can be singed by _
 app.get('/hello', (_req, res) => {
     res.send('Hello Full Stack!');
 });
 
-const PORT = 3003;
+app.get('/bmi', (req, res) => {
+    // get params and control them
+    const { height, weight } = req.query;
+    if (!height || !weight) {
+        res.status(400).json({ error: 'missing parameters' });
+    }
+    try {
+        // return the json as intended or send an error json object
+        const bmi = calculateBmiCmKg(Number(height), Number(weight));
+        const resultObj = { height, weight, bmi };
+        res.status(200).json(resultObj);
+    } catch (error: unknown) {
+        let errorMessage = 'Something bad happened';
+        if (error instanceof Error) {
+            errorMessage += ' Error: ' + error.message;
+        }
+        console.log(errorMessage); // log the error
+        res.status(400).json({ error: errorMessage });
+    }
+});
+
+const PORT = 3002;
 
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);

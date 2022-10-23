@@ -135,3 +135,29 @@ Replace also your existing _tsconfig.json_ file with the following content:
 ```
 
 Make sure there aren't any errors!
+
+## 9.5 WebBMI
+
+Add an endpoint for the BMI calculator that can be used by doing an HTTP GET request to endpoint bmi and specifying the input with [query string parameters](https://en.wikipedia.org/wiki/Query_string). For example, to get the BMI of a person having height 180 and weight 72, the url is http://localhost:3002/bmi?height=180&weight=72.
+
+The response is a json of the form:
+
+```json
+{
+    "weight": 72,
+    "height": 180,
+    "bmi": "Normal (healthy weight)"
+}
+```
+
+See the [Express documentation](https://expressjs.com/en/5x/api.html#req.query) for info on how to access the query parameters.
+
+If the query parameters of the request are of the wrong type or missing, a response with proper status code and error message is given:
+
+```json
+{
+    "error": "malformatted parameters"
+}
+```
+
+Do not copy the calculator code to file index.ts; instead, make it a [TypeScript module](https://www.typescriptlang.org/docs/handbook/modules.html) that can be imported in index.ts.
