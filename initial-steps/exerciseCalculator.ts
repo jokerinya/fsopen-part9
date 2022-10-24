@@ -13,18 +13,30 @@ interface ExerciseValues {
     dailyExerciseHours: Array<number>;
 }
 
-const parseArgumentsExercise = (args: Array<string>): ExerciseValues => {
-    if (args.length < 4) throw new Error('Not enough arguments');
-    // check if all elements are numbers
-    for (let i = 2; i < args.length; i++) {
+type ArgArr = Array<string> | Array<string>;
+
+const parseArgumentsExercise = (
+    args: ArgArr,
+    target: number | string
+): ExerciseValues => {
+    if (args.length === 0) throw new Error('Not enough arguments');
+    // check if all elements are numbers in the array
+    for (let i = 0; i < args.length; i++) {
         if (isNaN(Number(args[i]))) {
-            throw new Error('Provided values were not numbers!');
+            throw new Error('malformatted parameters');
+        }
+        // check if all of them positive integers
+        if (Number(args[i]) < 0) {
+            throw new Error('malformatted parameters');
         }
     }
-
+    // check targer parameter
+    if (isNaN(Number(target)) || Number(target) < 0) {
+        throw new Error('malformatted parameters');
+    }
     return {
-        targetHour: Number(args[2]),
-        dailyExerciseHours: args.slice(3).map((el) => Number(el)),
+        targetHour: Number(target),
+        dailyExerciseHours: args.map((el) => Number(el)),
     };
 };
 
@@ -47,10 +59,10 @@ const ratingDescriptionString = (rating: number): string => {
     }
 };
 
-const calculateExercises = (
+const calculateExercisesObj = (
     dailyExerciseHours: Array<number>,
     targetHour: number
-) => {
+): Result => {
     const periodLength = dailyExerciseHours.length;
     const trainingDays = dailyExerciseHours.filter((hours) => hours > 0).length;
     const average =
@@ -69,17 +81,16 @@ const calculateExercises = (
         average,
     };
     console.log(res);
+    return res;
 };
 
-try {
-    const { targetHour, dailyExerciseHours } = parseArgumentsExercise(
-        process.argv
+const calculateExercises = (dailyExerciseArr: ArgArr, target: number) => {
+    const { dailyExerciseHours, targetHour } = parseArgumentsExercise(
+        dailyExerciseArr,
+        target
     );
-    calculateExercises(dailyExerciseHours, targetHour);
-} catch (error: unknown) {
-    let errorMessage = 'Something bad happened';
-    if (error instanceof Error) {
-        errorMessage += ' Error: ' + error.message;
-    }
-    console.log(errorMessage);
-}
+
+    return calculateExercisesObj(dailyExerciseHours, targetHour);
+};
+
+export { calculateExercises };
