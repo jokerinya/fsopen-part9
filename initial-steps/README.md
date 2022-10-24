@@ -161,3 +161,9 @@ If the query parameters of the request are of the wrong type or missing, a respo
 ```
 
 Do not copy the calculator code to file index.ts; instead, make it a [TypeScript module](https://www.typescriptlang.org/docs/handbook/modules.html) that can be imported in index.ts.
+
+> ## Exercises 9.6.-9.7.
+
+## 9.6 Eslint
+
+Configure your project to use the above eslint settings and fix all the warnings.
