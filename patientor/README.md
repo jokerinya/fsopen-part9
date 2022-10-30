@@ -45,3 +45,17 @@ Create a type Diagnose and use it to create endpoint _/api/diagnoses_ for fetchi
 Structure your code properly by using meaningfully-named directories and files.
 
 **Note** that diagnoses may or may not contain the field _latin_. You might want to use [optional properties](https://www.typescriptlang.org/docs/handbook/interfaces.html#optional-properties) in the type definition.
+
+## 9.11: Patientor backend, step4
+
+Create data type _Patient_ and set up the GET endpoint _/api/patients_ which returns all patients to the frontend, excluding field _ssn_. Use a [utility type](https://www.typescriptlang.org/docs/handbook/utility-types.html) to make sure you are selecting and returning only the wanted fields.
+
+In this exercise, you may assume that field _gender_ has type _string_.
+
+Try the endpoint with your browser and ensure that _ssn_ is not included in the response:
+
+![Ssn is not in the backend](./readmeimg/22g.png)
+
+After creating the endpoint, ensure that the _frontend_ shows the list of patients:
+
+![Frontend](./readmeimg/22h.png)
