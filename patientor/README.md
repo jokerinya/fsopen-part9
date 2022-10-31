@@ -59,3 +59,20 @@ Try the endpoint with your browser and ensure that _ssn_ is not included in the 
 After creating the endpoint, ensure that the _frontend_ shows the list of patients:
 
 ![Frontend](./readmeimg/22h.png)
+
+> ## Exercises 9.12.-9.13.
+
+## 9.12: Patientor backend, step5
+
+Create a POST endpoint _/api/patients_ for adding patients. Ensure that you can add patients also from the frontend. You can create unique ids of type string using the uuid library:
+
+```js
+import { v1 as uuid } from 'uuid';
+const id = uuid();
+```
+
+## 9.13: Patientor backend, step6
+
+Set up safe parsing, validation and type guards to the POST _/api/patients_ request.
+
+Refactor the gender field to use an [enum type](https://www.typescriptlang.org/docs/handbook/enums.html).

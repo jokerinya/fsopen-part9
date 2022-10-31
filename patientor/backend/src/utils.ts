@@ -1,12 +1,4 @@
-import { NewPatient } from './types';
-
-/**
- *     {
-        ssn: '300179-77A',
-        gender: 'male',
-        occupation: 'Cop',
-    },
- */
+import { Gender, NewPatient } from './types';
 
 // const a = "I'm a string primitive";
 // const b = new String("I'm a String Object");
@@ -43,12 +35,20 @@ const parseSSN = (ssn: unknown): string => {
     }
     return ssn;
 };
-const parseGender = (gender: unknown): string => {
-    if (!gender || !isString(gender)) {
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isGender = (gender: any): gender is Gender => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    return Object.values(Gender).includes(gender);
+};
+
+const parseGender = (gender: unknown): Gender => {
+    if (!gender || !isGender(gender)) {
         throw new Error('Incorrect or missing gender');
     }
     return gender;
 };
+
 const parseOccupation = (occupation: unknown): string => {
     if (!occupation || !isString(occupation)) {
         throw new Error('Incorrect or missing occupation');
