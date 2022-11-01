@@ -76,3 +76,5 @@ const id = uuid();
 Set up safe parsing, validation and type guards to the POST _/api/patients_ request.
 
 Refactor the gender field to use an [enum type](https://www.typescriptlang.org/docs/handbook/enums.html).
+
+## Exercises 9.14.-9.15 : [courseinfo](https://github.com/jokerinya/fsopen-part9/tree/main/courseinfo)

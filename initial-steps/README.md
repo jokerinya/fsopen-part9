@@ -220,3 +220,7 @@ In this exercise, you might find it beneficial to use the explicit any type when
 You might also get in trouble with rules no-unsafe-member-access and no-unsafe-assignment . These rules may be ignored in this exercise.
 
 Note that you need to have a correct setup in order to get hold of the request body; see [part 3](https://fullstackopen.com/en/part3/node_js_and_express#receiving-data).
+
+## Exercises 9.8.-9.13 : [patientor](https://github.com/jokerinya/fsopen-part9/tree/main/patientor)
+
+## Exercises 9.14.-9.15 : [courseinfo](https://github.com/jokerinya/fsopen-part9/tree/main/courseinfo)
