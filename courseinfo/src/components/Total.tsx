@@ -1,7 +1,4 @@
-interface CoursePart {
-  name: string;
-  exerciseCount: number;
-}
+import { CoursePart } from "../types";
 
 interface TotalProps {
   courseParts: Array<CoursePart>;
