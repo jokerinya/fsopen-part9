@@ -109,3 +109,29 @@ export type PublicPatient = Omit<Patient, 'ssn' | 'entries'>;
 The response should look as follows:
 
 ![Response](./readmeimg/38a.png)
+
+## 9.17: patientor, step2
+
+Create a page for showing a patient's full information in the frontend.
+
+The user should be able to access a patient's information by clicking the patient's name.
+
+Fetch the data from the endpoint created in the previous exercise. After fetching the patient information from the backend, add the fetched information to the application's state. Do not fetch the information if it already is in the app state (i.e. if the user is visiting the same patient's information many times).
+
+Since we now have the state in the context, you'll need to define a new action type for updating an individual patient's data.
+
+The Application uses [MaterialUI](https://mui.com/core/) that we covered in [part 7](https://fullstackopen.com/en/part7/more_about_styles) for styling. You may also use it for the new components but that is up to you since our main focus now is TypeScript.
+
+The Application also uses [React Router](https://reactrouter.com/en/main/start/tutorial) to control which view is visible in the frontend. You might want to have a look at [part 7]https://fullstackopen.com/en/part7/react_router) if you don't yet have a grasp on how the router works.
+
+The result could look like this:
+
+![Result](./readmeimg/39x.png)
+
+Example uses [Material UI Icons](https://mui.com/material-ui/material-icons/) to represent genders.
+
+**Note** that in order to access the id in the url, you need to give [useParams](https://reactrouter.com/en/main/hooks/use-params) a proper type argument:
+
+```jsx
+const { id } = useParams<{ id: string }>();
+```
