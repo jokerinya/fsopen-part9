@@ -135,3 +135,26 @@ Example uses [Material UI Icons](https://mui.com/material-ui/material-icons/) to
 ```jsx
 const { id } = useParams<{ id: string }>();
 ```
+
+## 9.18: patientor, step3
+
+Currently, we create _action_ objects wherever we dispatch actions, e.g. the _App_ component has the following:
+
+```js
+dispatch({
+    type: 'SET_PATIENT_LIST',
+    payload: patientListFromApi,
+});
+```
+
+Define [action creator](https://fullstackopen.com/en/part6/flux_architecture_and_redux#action-creators) functions in the file _src/state/reducer.ts_ and refactor the code to use them.
+
+For example, the _App_ should become like the following:
+
+```js
+import { useStateValue, setPatientList } from './state';
+
+// ...
+
+dispatch(setPatientList(patientListFromApi));
+```
