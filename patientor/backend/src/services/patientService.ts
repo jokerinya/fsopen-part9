@@ -1,8 +1,8 @@
 import { v1 as uuid } from 'uuid';
 import patients from '../data/patients';
-import { NewPatient, NonSensitivePatientData, Patient } from '../types';
+import { NewPatient, Patient, PublicPatient } from '../types';
 
-const getAll = (): Array<NonSensitivePatientData> => {
+const getAll = (): Array<PublicPatient> => {
     return patients.map(({ id, name, dateOfBirth, gender, occupation }) => ({
         id,
         name,
@@ -23,7 +23,16 @@ const addPatient = (entry: NewPatient): Patient => {
     return newEntry;
 };
 
+const getPatient = (id: string): Patient => {
+    const patient = patients.find((p) => p.id === id);
+    if (!patient) {
+        throw new Error('There is no user with this id.');
+    }
+    return patient;
+};
+
 export default {
     getAll,
     addPatient,
+    getPatient,
 };

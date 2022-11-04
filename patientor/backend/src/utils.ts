@@ -1,4 +1,4 @@
-import { Gender, NewPatient } from './types';
+import { Entry, Gender, NewPatient } from './types';
 
 // const a = "I'm a string primitive";
 // const b = new String("I'm a String Object");
@@ -56,6 +56,13 @@ const parseOccupation = (occupation: unknown): string => {
     return occupation;
 };
 
+// this part will added later
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const parseEntries = (entries: any): Entry[] => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return entries;
+};
+
 // This will accepts any type of object
 // validate it as NewPatient type which is Patient without id
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -66,6 +73,7 @@ const toNewPatient = (object: any): NewPatient => {
         ssn: parseSSN(object.ssn),
         gender: parseGender(object.gender),
         occupation: parseOccupation(object.occupation),
+        entries: parseEntries(object.entries) || [],
     };
     return newPatient;
 };

@@ -21,10 +21,8 @@ type StateProviderProps = {
   children: React.ReactElement;
 };
 
-export const StateProvider = ({
-  reducer,
-  children
-}: StateProviderProps) => {
+// added to index.ts
+export const StateProvider = ({ reducer, children }: StateProviderProps) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <StateContext.Provider value={[state, dispatch]}>

@@ -78,3 +78,34 @@ Set up safe parsing, validation and type guards to the POST _/api/patients_ requ
 Refactor the gender field to use an [enum type](https://www.typescriptlang.org/docs/handbook/enums.html).
 
 ## Exercises 9.14.-9.15 : [courseinfo](https://github.com/jokerinya/fsopen-part9/tree/main/courseinfo)
+
+> ## Exercises 9.16.-9.18.
+
+We will soon add a new type for our app, _Entry_, which represents a lightweight patient journal entry. It consists of a journal text, i.e. a _description_, a creation date, information regarding the specialist who created it and possible diagnosis codes. Diagnosis codes map to the ICD-10 codes returned from the _/api/diagnoses_ endpoint. Our naive implementation will be that a patient has an array of entries.
+
+Before going into this, let us do some preparatory work.
+
+## 9.16: patientor, step1
+
+Create an endpoint _/api/patients/:id_ that returns all of the patient information for one patient, including the array of patient entries that is still empty for all the patients. For the time being, expand the backend types as follows:
+
+```ts
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface Entry {}
+
+export interface Patient {
+    id: string;
+    name: string;
+    ssn: string;
+    occupation: string;
+    gender: Gender;
+    dateOfBirth: string;
+    entries: Entry[];
+}
+
+export type PublicPatient = Omit<Patient, 'ssn' | 'entries'>;
+```
+
+The response should look as follows:
+
+![Response](./readmeimg/38a.png)
