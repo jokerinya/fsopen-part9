@@ -158,3 +158,13 @@ import { useStateValue, setPatientList } from './state';
 
 dispatch(setPatientList(patientListFromApi));
 ```
+
+> ## Exercises 9.19.-9.22.
+
+## 9.19: patientor, step4
+
+Define the types _OccupationalHealthcareEntry_ and _HospitalEntry_ so that those conform with the example data. Ensure that your backend returns the entries properly when you go to an individual patient's route:
+
+![Patient route](./readmeimg/40.png)
+
+Use types properly in the backend! For now, there is no need to do a proper validation for all the fields of the entries in the backend, it is enough e.g. to check that the field _type_ has a correct value.
