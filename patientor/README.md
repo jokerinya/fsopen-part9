@@ -168,3 +168,13 @@ Define the types _OccupationalHealthcareEntry_ and _HospitalEntry_ so that those
 ![Patient route](./readmeimg/40.png)
 
 Use types properly in the backend! For now, there is no need to do a proper validation for all the fields of the entries in the backend, it is enough e.g. to check that the field _type_ has a correct value.
+
+## 9.20: patientor, step5
+
+Extend a patient's page in the frontend to list the _date_, _description_ and _diagnose codes_ of the patient's entries.
+
+You can use the same type definition for an _Entry_ in the frontend. For these exercises, it is enough to just copy/paste the definitions from the backend to the frontend.
+
+Your solution could look like this:
+
+![Frontend with Entry](./readmeimg/41.png)

@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { apiBaseUrl } from "../constants";
 import { updatePatient, useStateValue } from "../state";
 import { Patient } from "../types";
+import Entries from "./Entries";
 import GenderIcon from "./GenderIcon";
 
 const PatientPage = () => {
@@ -42,6 +43,7 @@ const PatientPage = () => {
       </h3>
       <div>ssh: {patient?.ssn}</div>
       <div>occupation: {patient?.occupation}</div>
+      <Entries entries={patient?.entries} />
     </div>
   );
 };
