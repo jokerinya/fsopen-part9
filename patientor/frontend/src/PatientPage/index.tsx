@@ -3,8 +3,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { apiBaseUrl } from "../constants";
-import { updatePatient, useStateValue } from "../state";
-import { Patient } from "../types";
+import { setDiagnoses, updatePatient, useStateValue } from "../state";
+import { Diagnosis, Patient } from "../types";
 import Entries from "./Entries";
 import GenderIcon from "./GenderIcon";
 
@@ -22,8 +22,12 @@ const PatientPage = () => {
         const { data: patientFromApi } = await axios.get<Patient>(
           `${apiBaseUrl}/patients/${patientId}`
         );
+        const { data: diagnosesFromApi } = await axios.get<Diagnosis[]>(
+          `${apiBaseUrl}/diagnoses/`
+        );
         // dispatch({ type: "UPDATE_PATIENT", payload: patientFromApi });
         dispatch(updatePatient(patientFromApi));
+        dispatch(setDiagnoses(diagnosesFromApi));
         setPatient(patientFromApi);
       } catch (e) {
         console.error(e);

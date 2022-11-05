@@ -178,3 +178,9 @@ You can use the same type definition for an _Entry_ in the frontend. For these e
 Your solution could look like this:
 
 ![Frontend with Entry](./readmeimg/41.png)
+
+## 9.21: patientor, step6
+
+Fetch and add diagnoses to the application state from the _/api/diagnoses_ endpoint. Use the new diagnosis data to show the descriptions for patient's diagnosis codes:
+
+![Diagnosis Codes](./readmeimg/42.png)

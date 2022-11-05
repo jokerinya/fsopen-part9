@@ -1,4 +1,5 @@
 import React from "react";
+import Diagnoses from "./Diagnoses";
 import { Entry } from "../types";
 
 interface EntriesProps {
@@ -11,11 +12,7 @@ const SingleEntry = ({ entry }: { entry: Entry }) => {
       <p>
         {entry.date} {entry.description}
       </p>
-      <ul>
-        {entry.diagnosisCodes?.map((code) => (
-          <li key={code}>{code}</li>
-        ))}
-      </ul>
+      <Diagnoses codes={entry.diagnosisCodes} />
     </div>
   );
 };
