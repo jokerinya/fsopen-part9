@@ -5,9 +5,9 @@ import { Gender } from "../types";
 
 const GenderIcon = ({ gender }: { gender: Gender | undefined }) => {
   switch (gender) {
-    case "male":
-      return <FemaleIcon />;
     case "female":
+      return <FemaleIcon />;
+    case "male":
       return <MaleIcon />;
     case "other":
       return <BlockIcon />;

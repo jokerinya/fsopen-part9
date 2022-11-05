@@ -1,20 +1,25 @@
 import React from "react";
-import Diagnoses from "./Diagnoses";
 import { Entry } from "../types";
+import HealthCheckEntry from "./HealthCheckEntryCard";
+import OccupationalHealthEntry from "./OccupationalHealthEntryCard";
+import HospitalEnry from "./HospitalEntryCard";
+import Grid from "@mui/material/Grid";
 
 interface EntriesProps {
   entries?: Entry[];
 }
 
 const SingleEntry = ({ entry }: { entry: Entry }) => {
-  return (
-    <div>
-      <p>
-        {entry.date} {entry.description}
-      </p>
-      <Diagnoses codes={entry.diagnosisCodes} />
-    </div>
-  );
+  switch (entry.type) {
+    case "HealthCheck":
+      return <HealthCheckEntry entry={entry} />;
+    case "OccupationalHealthcare":
+      return <OccupationalHealthEntry entry={entry} />;
+    case "Hospital":
+      return <HospitalEnry entry={entry} />;
+    default:
+      return null;
+  }
 };
 
 const Entries = ({ entries }: EntriesProps) => {
@@ -23,9 +28,22 @@ const Entries = ({ entries }: EntriesProps) => {
   return (
     <div>
       <h4>entries</h4>
-      {entries.map((entry) => (
-        <SingleEntry key={entry.id} entry={entry} />
-      ))}
+      <Grid container padding={3} rowSpacing={2}>
+        {entries.map((entry) => (
+          <Grid
+            key={entry.id}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <SingleEntry entry={entry} />
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 };

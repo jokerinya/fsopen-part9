@@ -184,3 +184,19 @@ Your solution could look like this:
 Fetch and add diagnoses to the application state from the _/api/diagnoses_ endpoint. Use the new diagnosis data to show the descriptions for patient's diagnosis codes:
 
 ![Diagnosis Codes](./readmeimg/42.png)
+
+## 9.22: patientor, step7
+
+Extend the entry listing in the patient's page to include the Entry's details with a new component that shows the rest of the information of the patient's entries distinguishing different types from each other.
+
+You could use eg. [Icon](https://mui.com/material-ui/material-icons/) or some other [Material UI](https://mui.com/) component to get appropriate visuals for your listing.
+
+You should use a `switch case-based` rendering and _exhaustive type checking_ so that no cases can be forgotten.
+
+Like this:
+
+![Switch](./readmeimg/35c.png)
+
+The resulting entries in the listing could look something like this:
+
+![Resulting Entries](./readmeimg/36x.png)
