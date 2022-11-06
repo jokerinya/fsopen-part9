@@ -19,7 +19,7 @@ interface Props {
 const genderOptions: GenderOption[] = [
   { value: Gender.Male, label: "Male" },
   { value: Gender.Female, label: "Female" },
-  { value: Gender.Other, label: "Other" },
+  { value: Gender.Other, label: "Other" }
 ];
 
 export const AddPatientForm = ({ onSubmit, onCancel }: Props) => {
@@ -30,7 +30,7 @@ export const AddPatientForm = ({ onSubmit, onCancel }: Props) => {
         ssn: "",
         dateOfBirth: "",
         occupation: "",
-        gender: Gender.Other,
+        gender: Gender.Other
       }}
       onSubmit={onSubmit}
       validate={(values) => {
@@ -94,7 +94,7 @@ export const AddPatientForm = ({ onSubmit, onCancel }: Props) => {
               <Grid item>
                 <Button
                   style={{
-                    float: "right",
+                    float: "right"
                   }}
                   type="submit"
                   variant="contained"

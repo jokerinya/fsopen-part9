@@ -159,8 +159,6 @@ import { useStateValue, setPatientList } from './state';
 dispatch(setPatientList(patientListFromApi));
 ```
 
-> ## Exercises 9.19.-9.22.
-
 ## 9.19: patientor, step4
 
 Define the types _OccupationalHealthcareEntry_ and _HospitalEntry_ so that those conform with the example data. Ensure that your backend returns the entries properly when you go to an individual patient's route:
@@ -200,3 +198,11 @@ Like this:
 The resulting entries in the listing could look something like this:
 
 ![Resulting Entries](./readmeimg/36x.png)
+
+## 9.23: patientor, step8
+
+We have established that patients can have different kinds of entries. We don't yet have any way of adding entries to patients in our app, so, at the moment, it is pretty useless as an electronic medical record.
+
+Your next task is to add endpoint _/api/patients/:id/entries_ to your backend, through which you can POST an entry for a patient.
+
+Remember that we have different kinds of entries in our app, so our backend should support all those types and check that at least all required fields are given for each type.
