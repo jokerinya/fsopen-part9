@@ -1,7 +1,8 @@
-import React from "react";
+// Ui 3rd party
 import { Field } from "formik";
-
+// Types and States
 import { EntryType } from "../types";
+// Components
 import { NumberField, TextField } from "../AddPatientModal/FormField";
 
 interface Props {

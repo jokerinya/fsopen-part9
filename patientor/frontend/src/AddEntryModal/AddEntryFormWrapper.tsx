@@ -1,33 +1,19 @@
-import { Divider } from "@material-ui/core";
-// import Box from '@mui/material/Box';
+// 3rd party
+import { useState, useCallback } from "react";
+import * as yup from "yup";
+// Ui 3rd party
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-
+import Divider from "@mui/material/Divider";
 import { SelectChangeEvent } from "@mui/material";
-
-import React, { useState, useCallback } from "react";
-import * as yup from "yup";
-
+// Types and States
 import { EntryType, NewEntry } from "../types";
-
+// Components
 import AddEntryForm from "./AddEntryForm";
 
-const options = [
-  {
-    key: EntryType.HealthCheck,
-    value: EntryType.HealthCheck,
-    text: "Health Check"
-  },
-  {
-    key: EntryType.OccupationalHealthcare,
-    value: EntryType.OccupationalHealthcare,
-    text: "Occupational Health Care"
-  },
-  { key: EntryType.Hospital, value: EntryType.Hospital, text: "Hospital" }
-];
-
+// Yup schemas start
 const healthCheckSchema = yup.object().shape({
   description: yup.string().min(12).required(),
   date: yup
@@ -84,7 +70,9 @@ const hospitalSchema = yup.object().shape({
     })
     .required()
 });
+// Yup schemas end
 
+// Initial Values Start
 const baseInitialValues = {
   description: "",
   date: "",
@@ -109,6 +97,22 @@ const hospitalIntitialValues: NewEntry = {
   type: EntryType.Hospital,
   discharge: { date: "", criteria: "" }
 };
+// Initial Values End
+
+// Entry type select options
+const typeSelectOptions = [
+  {
+    key: EntryType.HealthCheck,
+    value: EntryType.HealthCheck,
+    text: "Health Check"
+  },
+  {
+    key: EntryType.OccupationalHealthcare,
+    value: EntryType.OccupationalHealthcare,
+    text: "Occupational Health Care"
+  },
+  { key: EntryType.Hospital, value: EntryType.Hospital, text: "Hospital" }
+];
 
 interface Props {
   onSubmit: (values: NewEntry) => void;
@@ -168,7 +172,7 @@ const AddEntryFormWrapper = ({ onCancel, onSubmit }: Props) => {
           onChange={handleLabelChange}
           label="Entry Type"
         >
-          {options.map((option) => (
+          {typeSelectOptions.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.text || option.value}
             </MenuItem>

@@ -1,11 +1,14 @@
-import { Field, Form, Formik } from "formik";
-import React from "react";
-import { NewEntry } from "../types";
-import { DiagnosisSelection, TextField } from "../AddPatientModal/FormField";
-import { Button, Grid } from "@material-ui/core";
-import { useStateValue } from "../state";
-import EntryTypeFields from "./EntryTypeFields";
+// 3rd party
 import * as yup from "yup";
+import { Field, Form, Formik } from "formik";
+// Ui 3rd party
+import { Button, Grid } from "@material-ui/core";
+// Types and States
+import { useStateValue } from "../state";
+import { NewEntry } from "../types";
+// Components
+import { DiagnosisSelection, TextField } from "../AddPatientModal/FormField";
+import EntryTypeFields from "./EntryTypeFields";
 
 interface Props {
   initialValues: NewEntry;

@@ -206,3 +206,90 @@ We have established that patients can have different kinds of entries. We don't 
 Your next task is to add endpoint _/api/patients/:id/entries_ to your backend, through which you can POST an entry for a patient.
 
 Remember that we have different kinds of entries in our app, so our backend should support all those types and check that at least all required fields are given for each type.
+
+## 9.24: patientor, step9
+
+Now that our backend supports adding entries, we want to add the corresponding functionality to the frontend. In this exercise, you should add a form for adding an entry to a patient. An intuitive place for accessing the form would be on a patient's page.
+
+In this exercise, it is enough to **support _one_ entry type**, and you do not have to handle any errors. It is enough if a new entry can be created when the form is filled with valid data.
+
+Upon a successful submit, the new entry should be added to the correct patient and the patient's entries on the patient page should be updated to contain the new entry.
+
+If you like, you can re-use some of the code from the Add patient form for this exercise, but this is not a requirement.
+
+Note that the file [FormField.tsx](https://github.com/fullstack-hy2020/patientor/blob/main/src/AddPatientModal/FormField.tsx#L58) has a ready-made component called DiagnosisSelection that can be used for setting the field diagnoses.
+
+It can be used as follows:
+
+```tsx
+const AddEntryForm = ({ onSubmit, onCancel }: Props) => {
+    const [{ diagnoses }] = useStateValue();
+
+    return (
+        <Formik
+            initialValues={
+                {
+                    /// ...
+                }
+            }
+            onSubmit={onSubmit}
+            validate={(values) => {
+                /// ...
+            }}
+        >
+            {({ isValid, dirty, setFieldValue, setFieldTouched }) => {
+                return (
+                    <Form className='form ui'>
+                        // ...
+                        <DiagnosisSelection
+                            setFieldValue={setFieldValue}
+                            setFieldTouched={setFieldTouched}
+                            diagnoses={Object.values(diagnoses)}
+                        />
+                        // ...
+                    </Form>
+                );
+            }}
+        </Formik>
+    );
+};
+```
+
+With small tweaks on types, the readily made component _SelectField_ can be used for the heath check rating.
+
+## 9.25: patientor, step10
+
+Extend your solution so that it displays an error message if some required values are missing or formatted incorrectly.
+
+## 9.26: patientor, step11
+
+Extend your solution so that it supports two entry types and displays an error message if some required values are missing or formatted incorrectly. You do not need to care about the possible errors in the server's response.
+
+The easiest but surely not the most elegant way to do this exercise is to have a separate form for each different entry type. Getting the types to work properly might be a slight challenge if you use just a single form.
+
+Note that that if you need alter the shown form based on user selections, you can access the form values using the parameter values of the rendering function:
+
+```tsx
+<Formik initialValues={} onSubmit={onSubmit} validate={}>
+    {({ isValid, dirty, setFieldValue, setFieldTouched, values }) => {
+        console.log(values);
+        return <Form className='form ui'></Form>;
+    }}
+</Formik>
+```
+
+## 9.27: patientor, step12
+
+Extend your solution so that it supports _all the entry types_ and displays an error message if some required values are missing or formatted incorrectly. You do not need to care about the possible errors in the server's response.
+
+# Submitting exercises and getting the credits
+
+Exercises of this part are submitted via [the submissions system](https://studies.cs.helsinki.fi/stats/courses/fs-typescript) just like in the previous parts, but unlike previous parts, the submission goes to a different "course instance". Remember that you have to finish at least 24 exercises to pass this part!
+
+Once you have completed the exercises and want to get the credits, let us know through the exercise submission system that you have completed the course:
+
+![Submission](./readmeimg/21.png)
+
+**Note** that you need a registration to the corresponding course part for getting the credits registered, see [here](https://fullstackopen.com/en/part0/general_info#parts-and-completion) for more information.
+
+You can download the certificate for completing this part by clicking one of the flag icons. The flag icon corresponds to the certificate's language.

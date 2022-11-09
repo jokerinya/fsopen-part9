@@ -115,7 +115,12 @@ export const DiagnosisSelection = ({
   const onChange = (data: string[]) => {
     setDiagnoses([...data]);
     setFieldTouched(field, true);
-    // setFieldValue(field, selectedDiagnoses);
+    /**
+     * useState works async, setFieldTouch sync
+     * so Select component's value won't be updated if value passed by component's state's value
+     * setFieldValue(field, selectedDiagnoses); (selectedDiagnoses is not updated yet)
+     * For this reason value should be passed by directly data's itself.
+     */
     setFieldValue(field, [...data]);
   };
   const stateOptions = diagnoses.map((diagnosis) => ({

@@ -1,7 +1,9 @@
-import React from "react";
+// Ui 3rd party
 import { Dialog, DialogTitle, DialogContent, Divider } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
+// Types and States
 import { NewEntry } from "../types";
+// Components
 import AddEntryFormWrapper from "./AddEntryFormWrapper";
 
 interface Props {
