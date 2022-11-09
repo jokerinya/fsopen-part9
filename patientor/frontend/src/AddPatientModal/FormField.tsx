@@ -76,6 +76,12 @@ interface NumberProps extends FieldProps {
 }
 
 export const NumberField = ({ field, label, min, max }: NumberProps) => {
+  /**
+   * To make this component controlled it should be initially set normally but here
+   * MUI deals with the situation
+   * https://reactjs.org/docs/forms.html#controlled-components
+   * https://stackoverflow.com/questions/37427508/react-changing-an-uncontrolled-input
+   */
   const [value, setValue] = useState<number>();
   return (
     <div style={{ marginBottom: "1em" }}>
@@ -87,11 +93,12 @@ export const NumberField = ({ field, label, min, max }: NumberProps) => {
         {...field}
         value={value}
         onChange={(e) => {
-          const value = parseInt(e.target.value);
-          if (value === undefined) return;
-          if (value > max) setValue(max);
-          else if (value <= min) setValue(min);
-          else setValue(Math.floor(value));
+          const inputValue = parseInt(e.target.value);
+          if (isNaN(inputValue)) return;
+          if (inputValue === undefined) return;
+          if (inputValue > max) setValue(max);
+          else if (inputValue <= min) setValue(min);
+          else setValue(Math.floor(inputValue));
         }}
       />
       <Typography variant="subtitle2" style={{ color: "red" }}>

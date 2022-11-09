@@ -6,7 +6,7 @@ import AddEntryModal from "../AddEntryModal";
 
 import { apiBaseUrl } from "../constants";
 import { setDiagnoses, updatePatient, useStateValue } from "../state";
-import { Diagnosis, NewBaseEntry, Patient } from "../types";
+import { Diagnosis, Entry, NewEntry, Patient } from "../types";
 import Entries from "./Entries";
 import GenderIcon from "./GenderIcon";
 
@@ -52,15 +52,22 @@ const PatientPage = () => {
     setError(undefined);
   };
 
-  const submitNewEntry = (values: NewBaseEntry) => {
+  const submitNewEntry = async (values: NewEntry) => {
     try {
-      console.log(values);
-      // const { data: newPatient } = await axios.post<Patient>(
-      //   `${apiBaseUrl}/patients`,
-      //   values
-      // );
-      // dispatch({ type: "ADD_PATIENT", payload: newPatient });
-      // dispatch(addPatient(newPatient));
+      const patientId = patient?.id;
+      if (!patientId || !patient) {
+        throw new Error("There is no patient id or patient");
+      }
+      const { data: newEntry } = await axios.post<Entry>(
+        `${apiBaseUrl}/patients/${patientId}/entries`,
+        values
+      );
+      const updatedPatient = { ...patient } as Patient;
+      updatedPatient.entries = patient.entries
+        ? patient.entries.concat(newEntry)
+        : [newEntry];
+      dispatch(updatePatient(updatedPatient));
+      setPatient(updatedPatient);
       closeModal();
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
