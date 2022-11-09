@@ -165,3 +165,5 @@ Then add that interface to the type union _CoursePart_ and add corresponding dat
 The end result might look like the following:
 
 ![HalfStackApp](./readmeimg/45.png)
+
+## Exercises 9.16.-9.27 : [patientor](https://github.com/jokerinya/fsopen-part9/tree/main/patientor)

@@ -224,3 +224,5 @@ Note that you need to have a correct setup in order to get hold of the request b
 ## Exercises 9.8.-9.13 : [patientor](https://github.com/jokerinya/fsopen-part9/tree/main/patientor)
 
 ## Exercises 9.14.-9.15 : [courseinfo](https://github.com/jokerinya/fsopen-part9/tree/main/courseinfo)
+
+## Exercises 9.16.-9.27 : [patientor](https://github.com/jokerinya/fsopen-part9/tree/main/patientor)
